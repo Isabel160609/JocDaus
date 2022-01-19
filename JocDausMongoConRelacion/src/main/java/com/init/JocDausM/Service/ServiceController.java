@@ -55,7 +55,7 @@ public class ServiceController {
 		jogadorDao.save(jogador);
 		
 		return jogador;
-		
+	
 	}
 	
 	// 3 modifica el nom del jugador
@@ -87,7 +87,7 @@ public class ServiceController {
 				updateJogador.addTirada(tirada);
 				jogadorDao.save(updateJogador);
 				tiradesDao.save(tirada);
-				respuesta="la tirada ha sido añadida" + tirada.toString();
+				respuesta="la tirada ha sido añadida" ;
 				
 			}else {
 				respuesta="el jugador con id " + id + " no existe";
@@ -134,7 +134,7 @@ public class ServiceController {
 		return mapjogadorPercentatge;
 	}
 	
-	// 6 GET  retorna el llistat de jugades per un jugador.
+	// 7 GET  retorna el llistat de jugades per un jugador.
 	public List<Tirada> donaTiradesJogador(long id){
 		Optional<Jogador> optionalJogador = jogadorDao.findById(id);
 		List<Tirada> tirades;
@@ -150,7 +150,7 @@ public class ServiceController {
 	}
 	
 
-	// 7 retorna el ranking mig de tots els jugadors del sistema . És a dir, el percentatge mig d’èxits.
+	// 8 retorna el ranking mig de tots els jugadors del sistema . És a dir, el percentatge mig d’èxits.
 	 public double DonaRankingMig(List<Jogador> jogadors) {
 		double rankingMig=0.0;
 		//List<Jogador> jogadors = jogadorDao.findAll();
@@ -163,7 +163,7 @@ public class ServiceController {
 		rankingMig=sumatoriPorcentatge/jogadors.size();
 		return rankingMig;
 	}
-	//llista els jogadors que tenen tirades
+	//9 llista els jogadors que tenen tirades
 	 public List<Jogador> llistatJogadorsAmbTirades(List<Jogador> jogadors){
 		 List<Jogador> llistatJogadorsAmbTirades=new ArrayList<Jogador>();
 		 
@@ -175,7 +175,7 @@ public class ServiceController {
 		 }
 		 return llistatJogadorsAmbTirades;
 	 }
-	//8 retorna el jugador  amb pitjor percentatge d’èxit
+	//10 retorna el jugador  amb pitjor percentatge d’èxit
 	 public Jogador DonaPitjorRanking(List<Jogador> jogadors) {
 		 List<Jogador> jogadorsAmbTirades= llistatJogadorsAmbTirades(jogadors);
 		 jogadorsAmbTirades.sort(Comparator.comparing(Jogador::calcularPorcentaje));
@@ -183,7 +183,7 @@ public class ServiceController {
 			return jogadorsAmbTirades.get(0);
 	 }
 	 
-	//9 retorna el jugador amb millor percentatge d’èxit
+	//11 retorna el jugador amb millor percentatge d’èxit
 	 public Jogador DonaMillorRanking(List<Jogador> jogadors) {
 		 List<Jogador> jogadorsAmbTirades= llistatJogadorsAmbTirades(jogadors);
 		 jogadorsAmbTirades.sort(Comparator.comparing(Jogador::calcularPorcentaje).reversed());

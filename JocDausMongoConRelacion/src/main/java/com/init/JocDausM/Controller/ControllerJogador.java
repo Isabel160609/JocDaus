@@ -93,10 +93,10 @@ public class ControllerJogador {
 	// 6 GET /players/: retorna el llistat de tots els jugadors del sistema amb el
 	// seu percentatge mig d’èxits
 	@GetMapping(value = "/players/porcentatge")
-	public Map<String, Double> llistatPercentatges() {
-		List<Jogador> jogadors = jogadorDao.findAll();
+	public ResponseEntity<Map<String, Double>> llistatPercentatges() {
+		List<Jogador> jogadors =serviceController.llistaJogadors();
 		Map<String, Double> mapjogadorPercentatge = serviceController.llistatnomIPercentatges(jogadors);
-		return mapjogadorPercentatge;
+		return ResponseEntity.ok(mapjogadorPercentatge);
 	}
 
 	// 6 GET /players/{id}/games: retorna el llistat de jugades per un jugador.
@@ -111,29 +111,29 @@ public class ControllerJogador {
 	// 7 GET /players/ranking: retorna el ranking mig de tots els jugadors del
 	// sistema . És a dir, el percentatge mig d’èxits.
 	@GetMapping(value = "/players/ranking")
-	public double rankingMig() {
+	public ResponseEntity<Double> rankingMig() {
 		double rankingMig = 0.0;
-		List<Jogador> jogadors = jogadorDao.findAll();
+		List<Jogador> jogadors = serviceController.llistaJogadors();
 		rankingMig = serviceController.DonaRankingMig(jogadors);
-		return rankingMig;
+		return ResponseEntity.ok(rankingMig);
 	}
 
-//		//8 GET /players/ranking/loser: retorna el jugador  amb pitjor percentatge d’èxit
+	//8 GET /players/ranking/loser: retorna el jugador  amb pitjor percentatge d’èxit
 	@GetMapping(value = "/players/ranking/loser")
-	public Jogador rankingloser() {
+	public ResponseEntity<Jogador> rankingloser() {
 		double rankingMig = 0.0;
-		List<Jogador> jogadors = jogadorDao.findAll();
+		List<Jogador> jogadors = serviceController.llistaJogadors();;
 		Jogador jogadorPitjor = serviceController.DonaPitjorRanking(jogadors);
-		return jogadorPitjor;
+		return ResponseEntity.ok(jogadorPitjor);
 	}
 
 	//9 GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit
 	@GetMapping(value = "/players/ranking/winner")
-	public Jogador rankingwinner() {
+	public ResponseEntity<Jogador> rankingwinner() {
 
-		List<Jogador> jogadors = jogadorDao.findAll();
+		List<Jogador> jogadors = serviceController.llistaJogadors();;
 		Jogador jogadorMillor = serviceController.DonaMillorRanking(jogadors);
-		return jogadorMillor;
+		return ResponseEntity.ok(jogadorMillor);
 
 	}
 }
