@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,10 +17,13 @@ import com.mongodb.lang.NonNull;
 
 @Document(collection = "tirades")
 public class Tirada implements Serializable{
+	
+	@Transient
+	public static final String SEQUENCE_NAME = "tirades_sequence";
 
 	@Id
 	@NonNull
-	private String id;
+	private long id;
 
 	@Field(name = "valortirada1")
 	private int valorTirada1;
@@ -31,12 +35,12 @@ public class Tirada implements Serializable{
 	private boolean guanyar;
 	
 	@Field(name = "id_jogador")
-	String id_jogador;
+	long id_jogador;
 
 	public Tirada() {
 	}
 
-	public Tirada(String id,String id_jogador) {
+	public Tirada(long id,long id_jogador) {
 		this.id=id;
 		this.valorTirada1 = devuelveRandomEntreUnoYseis();
 		this.valorTirada2 = devuelveRandomEntreUnoYseis();
@@ -44,7 +48,7 @@ public class Tirada implements Serializable{
 		this.id_jogador = id_jogador;
 	}
 
-	public Tirada(String id_jogador) {
+	public Tirada(long id_jogador) {
 		
 		this.valorTirada1 = devuelveRandomEntreUnoYseis();
 		this.valorTirada2 = devuelveRandomEntreUnoYseis();
@@ -52,7 +56,7 @@ public class Tirada implements Serializable{
 		this.id_jogador = id_jogador;
 	}
 
-	public Tirada(String id, int valorTirada1, int valorTirada2, boolean guanyar, String id_jogador) {
+	public Tirada(long id, int valorTirada1, int valorTirada2, boolean guanyar, long id_jogador) {
 		this.id = id;
 		this.valorTirada1 = valorTirada1;
 		this.valorTirada2 = valorTirada2;
@@ -60,11 +64,11 @@ public class Tirada implements Serializable{
 		this.id_jogador = id_jogador;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -93,11 +97,11 @@ public class Tirada implements Serializable{
 	}
 
 
-	public String getId_jogador() {
+	public long getId_jogador() {
 		return id_jogador;
 	}
 
-	public void setId_jogador(String id_jogador) {
+	public void setId_jogador(long id_jogador) {
 		this.id_jogador = id_jogador;
 	}
 
@@ -114,4 +118,11 @@ public class Tirada implements Serializable{
 		return random;
 	}
 
+	@Override
+	public String toString() {
+		return "Tirada [id=" + id + ", valorTirada1=" + valorTirada1 + ", valorTirada2=" + valorTirada2 + ", guanyar="
+				+ guanyar + ", id_jogador=" + id_jogador + "]";
+	}
+
+	
 }
