@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseSequence {
 
+	//esta clase sirve para que haya un id autoincremental numerico para evitar el tipo de
+	//id que da mongo que suele dar comflicto
     @Id
     private String id;
 

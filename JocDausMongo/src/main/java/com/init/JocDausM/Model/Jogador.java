@@ -20,6 +20,8 @@ import com.mongodb.lang.NonNull;
 @Document(collection = "Jogador")
 public class Jogador implements Serializable {
 
+	//esta es la variable global que utilzams para cambiar el id generado por mongo por un autoincremental numerico 
+	//especifico para jugador
 	@Transient
 	public static final String SEQUENCE_NAME = "jogadors_sequence";
 
