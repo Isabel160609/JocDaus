@@ -27,6 +27,8 @@ import com.init.JocDausS.Entity.Tirada;
 @SpringBootTest//(classes= {ControllerIntegration.class})
 public class ControllerIntegration {
 
+	//para pasar el test de integracion hay que cambiar la base de datos a h2 en aplication properties
+	//tambien hay que tener en cuenta cambiar la fecha en los strings esperado para que coincida con la actual
 	@Test
 	@Order(1)
 	void getJogadorsIntegrationTest() throws JSONException {
@@ -34,7 +36,7 @@ public class ControllerIntegration {
 		String esperado="[\r\n"
 				+ "    {\r\n"
 				+ "        \"nom\": \"Isabel\",\r\n"
-				+ "        \"data\": \"2022-01-13T23:00:00.000+00:00\",\r\n"
+				+ "        \"data\": \"2022-01-19T23:00:00.000+00:00\",\r\n"
 				+ "        \"porcentatgeExit\": null,\r\n"
 				+ "        \"id\": 1,\r\n"
 				+ "        \"tirades\": [\r\n"
@@ -54,7 +56,7 @@ public class ControllerIntegration {
 				+ "    },\r\n"
 				+ "    {\r\n"
 				+ "        \"nom\": \"Josep\",\r\n"
-				+ "        \"data\": \"2022-01-13T23:00:00.000+00:00\",\r\n"
+				+ "        \"data\": \"2022-01-19T23:00:00.000+00:00\",\r\n"
 				+ "        \"porcentatgeExit\": null,\r\n"
 				+ "        \"id\": 2,\r\n"
 				+ "        \"tirades\": [\r\n"
@@ -80,7 +82,7 @@ public class ControllerIntegration {
 				+ "    },\r\n"
 				+ "    {\r\n"
 				+ "        \"nom\": \"Anonimo\",\r\n"
-				+ "        \"data\": \"2022-01-13T23:00:00.000+00:00\",\r\n"
+				+ "        \"data\": \"2022-01-19T23:00:00.000+00:00\",\r\n"
 				+ "        \"porcentatgeExit\": null,\r\n"
 				+ "        \"id\": 3,\r\n"
 				+ "        \"tirades\": [\r\n"
@@ -211,7 +213,7 @@ public class ControllerIntegration {
 		
 		String esperada=" {\r\n"
 				+ "        \"nom\": \"Isabel\",\r\n"
-				+ "        \"data\": \"2022-01-13T23:00:00.000+00:00\",\r\n"
+				+ "        \"data\": \"2022-01-19T23:00:00.000+00:00\",\r\n"
 				+ "        \"porcentatgeExit\": null,\r\n"
 				+ "        \"id\": 1,\r\n"
 				+ "        \"tirades\": []\r\n"
@@ -334,7 +336,7 @@ public class ControllerIntegration {
 	
 		String esperado="{\r\n"
 				+ "    \"nom\": \"Anonimo\",\r\n"
-				+ "    \"data\": \"2022-01-13T23:00:00.000+00:00\",\r\n"
+				+ "    \"data\": \"2022-01-19T23:00:00.000+00:00\",\r\n"
 				+ "    \"porcentatgeExit\": null,\r\n"
 				+ "    \"id\": 3,\r\n"
 				+ "    \"tirades\": [\r\n"
