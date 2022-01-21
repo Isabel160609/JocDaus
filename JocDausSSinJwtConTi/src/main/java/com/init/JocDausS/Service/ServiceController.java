@@ -20,6 +20,8 @@ import com.init.JocDausS.Entity.Tirada;
 
 @Service
 public class ServiceController implements IServiceController  {
+	
+	private static int count = 0; 
 
 	@Autowired
 	private JogadorDao jogadorDao;
@@ -42,7 +44,7 @@ public class ServiceController implements IServiceController  {
 
 		for (Jogador nombre : jogadors) {
 			if (nombre.getNom().equalsIgnoreCase(jogador.getNom())) {
-				jogador.setNom(jogador.getNom() + "1");
+				jogador.setNom(jogador.getNom() +" " +(++count));
 			}
 		}
 
