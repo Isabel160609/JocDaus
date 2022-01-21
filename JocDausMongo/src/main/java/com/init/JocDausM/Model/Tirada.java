@@ -18,6 +18,8 @@ import com.mongodb.lang.NonNull;
 @Document(collection = "tirades")
 public class Tirada implements Serializable{
 	
+	//esta es la variable global que utilzams para cambiar el id generado por mongo por un autoincremental numerico 
+	//especifico para tiradas
 	@Transient
 	public static final String SEQUENCE_NAME = "tirades_sequence";
 
