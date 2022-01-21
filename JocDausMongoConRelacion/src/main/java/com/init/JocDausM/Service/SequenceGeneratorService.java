@@ -15,7 +15,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 @Service
 public class SequenceGeneratorService {
 
-
+	//este service es para generar el id incremetal comentado en el modelo
 	@Autowired
     private  MongoOperations mongoOperations;
 

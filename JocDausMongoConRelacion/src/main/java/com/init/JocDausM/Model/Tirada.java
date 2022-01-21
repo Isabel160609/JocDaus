@@ -1,7 +1,5 @@
 package com.init.JocDausM.Model;
 
-
-
 import java.io.Serializable;
 
 import javax.persistence.JoinColumn;
@@ -16,11 +14,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.NonNull;
 
 @Document(collection = "tirades")
-public class Tirada implements Serializable{
+public class Tirada implements Serializable {
 
+	// esta es la variable global que utilzams para cambiar el id generado por mongo
+	// por un autoincremental numerico
+	// especifico para tiradas
 	@Transient
 	public static final String SEQUENCE_NAME = "tirades_sequence";
-	
+
 	@Id
 	@NonNull
 	private long id;
@@ -33,8 +34,8 @@ public class Tirada implements Serializable{
 
 	@Field(name = "guanyar")
 	private boolean guanyar;
-	
-	@JoinColumn(name="jogador_id")
+
+	@JoinColumn(name = "jogador_id")
 	@ManyToOne
 	@JsonIgnore
 	private Jogador jogador;
@@ -42,8 +43,8 @@ public class Tirada implements Serializable{
 	public Tirada() {
 	}
 
-	public Tirada(long id,Jogador jogador) {
-		this.id=id;
+	public Tirada(long id, Jogador jogador) {
+		this.id = id;
 		this.valorTirada1 = devuelveRandomEntreUnoYseis();
 		this.valorTirada2 = devuelveRandomEntreUnoYseis();
 		this.guanyar = calculateResult();
@@ -51,7 +52,7 @@ public class Tirada implements Serializable{
 	}
 
 	public Tirada(Jogador jogador) {
-		
+
 		this.valorTirada1 = devuelveRandomEntreUnoYseis();
 		this.valorTirada2 = devuelveRandomEntreUnoYseis();
 		this.guanyar = calculateResult();
@@ -106,7 +107,6 @@ public class Tirada implements Serializable{
 		this.jogador = jogador;
 	}
 
-
 	public boolean calculateResult() {
 		if (this.valorTirada1 + this.valorTirada2 == 7) {
 			return true;
@@ -126,5 +126,4 @@ public class Tirada implements Serializable{
 				+ guanyar + ", jogador=" + jogador + "]";
 	}
 
-	
 }

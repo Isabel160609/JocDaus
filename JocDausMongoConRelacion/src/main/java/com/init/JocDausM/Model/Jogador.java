@@ -1,7 +1,5 @@
 package com.init.JocDausM.Model;
 
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,46 +18,44 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.NonNull;
 
+@Document(collection = "Jogador")
+public class Jogador implements Serializable {
 
-@Document(collection="Jogador")
-public class Jogador implements Serializable{
-
+	// esta es la variable global que utilzams para cambiar el id generado por mongo
+	// por un autoincremental numerico
+	// especifico para jugador
 	@Transient
 	public static final String SEQUENCE_NAME = "jogadors_sequence";
-	
+
 	@Id
 	@NonNull
 	private long id;
-	
-	@Field(name="nom")
+
+	@Field(name = "nom")
 	private String nom;
-	
-	@Field(name="date")
+
+	@Field(name = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date data;
-	
-	
 
 //	@JsonIgnore
 //	@OneToMany(mappedBy="jogador", cascade = {CascadeType.ALL})
-	//@DBRef(lazy = true)
+	// @DBRef(lazy = true)
 	@JsonIgnore
 	@DBRef(lazy = true)
-	private List<Tirada>llistaTirades;
-	
+	private List<Tirada> llistaTirades;
+
 	@Transient
 	private Double porcentatgeExit;
 
 	public Jogador() {
 	}
 
-	
 	public Jogador(long id, String nom, java.util.Date data) {
-	this.id = id;
-	this.nom = nom;
-	this.data = data;
-}
-
+		this.id = id;
+		this.nom = nom;
+		this.data = data;
+	}
 
 	public long getId() {
 		return id;
@@ -92,50 +88,46 @@ public class Jogador implements Serializable{
 	public void setTirades(List<Tirada> tirades) {
 		this.llistaTirades = tirades;
 	}
-	
-	
-	
+
 	public Double getPorcentatgeExit() {
 		return porcentatgeExit;
 	}
-
 
 	public void setPorcentatgeExit(Double porcentatgeExit) {
 		this.porcentatgeExit = porcentatgeExit;
 	}
 
-
 	public void addTirada(Tirada laTirada) {
-		
-		if(llistaTirades==null) llistaTirades=new ArrayList<>();
-				
+
+		if (llistaTirades == null)
+			llistaTirades = new ArrayList<>();
+
 		llistaTirades.add(laTirada);
-				
+
 		laTirada.setJogador(this);
-				
-				}
-	
+
+	}
+
 	public double calcularPorcentaje() {
-		int contador=0;
-		for(int i=0;i<llistaTirades.size();i++) {
-			if(llistaTirades.get(i).isGuanyar()) {
-				contador+=1;
+		int contador = 0;
+		for (int i = 0; i < llistaTirades.size(); i++) {
+			if (llistaTirades.get(i).isGuanyar()) {
+				contador += 1;
 			}
 		}
-		double porcentaje=pasaAPorcentaje(llistaTirades.size(),contador);
-		return porcentaje;
-	}
-	
-	public double pasaAPorcentaje(int total, int totalTrue) {
-		double porcentaje=(totalTrue*100)/total;
+		double porcentaje = pasaAPorcentaje(llistaTirades.size(), contador);
 		return porcentaje;
 	}
 
+	public double pasaAPorcentaje(int total, int totalTrue) {
+		double porcentaje = (totalTrue * 100) / total;
+		return porcentaje;
+	}
 
 	@Override
 	public String toString() {
 		return "Jogador [id=" + id + ", nom=" + nom + ", data=" + data + ", llistaTirades=" + llistaTirades
 				+ ", porcentatgeExit=" + porcentatgeExit + "]";
 	}
-	
+
 }
